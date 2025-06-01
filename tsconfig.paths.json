@@ -4,10 +4,16 @@
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "@scss/*": ["src/scss/*"],
+      "@styles/*": ["src/styles/*"],
       "@shared/*": ["src/components/shared/*"],
+      "@contexts/*": ["src/contexts/*"],
       "@models/*": ["src/models/*"],
-      "@contexts/*": ["src/contexts/*"]
+      "@pages/*": ["src/pages/*"],
+      "@remote/*": ["src/remote/*"],
+      "@constants": ["src/constants/index"],
+      "@constants/*": ["src/constants/*"],
+      "@atoms/*": ["src/atoms/*"],
+      "@hooks/*": ["src/hooks/*"]
     }
   }
 }

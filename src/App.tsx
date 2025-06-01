@@ -1,8 +1,8 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
 import { css } from '@emotion/react'
 import styled from '@emotion/styled'
+import Text from '@shared/Text'
 
 const bold = css`
   font-weight: bold;
@@ -20,19 +20,11 @@ const Button = styled.button`
 function App() {
   return (
     <div className="App" css={containerStyle}>
-      <Button>스타일 버튼</Button>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Text typography="t1" display="block" color="red">
+        t1
+      </Text>
+      <Text typography="t2">t2</Text>
+      <Text typography="t3">t3</Text>
     </div>
   )
 }
