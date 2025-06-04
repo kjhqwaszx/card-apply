@@ -1,3 +1,9 @@
-
 ListRow.tsx
--> 컴포넌트 합성
+-> 컴포넌트 합성을 통해 화면을 구성한다.
+
+< 애니메이션 > _ Card.tsx
+framer-motion 을 통해 부드러운 ui/ux 구현
+
+< 회원가입 / 로그인 >
+- firebase auth & store -> 회원 인증과, 회원 정보
+- validate 라이브러리로 벨리데이션 체크 ( signUp/Form.tsx )
