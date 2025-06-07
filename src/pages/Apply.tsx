@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Apply from '@components/apply'
 
 function ApplyPage() {
-  const [step, setStep] = useState(0)
+  const [step, setStep] = useState(1)
 
   const handleSubmit = () => {
     // TODO: 카드신청
