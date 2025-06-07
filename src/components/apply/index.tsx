@@ -1,6 +1,6 @@
 import Terms from '@components/apply/Terms'
 import BasicInfo from '@components/apply/BasicInfo'
-// import CardInfo from '@components/apply/CardInfo'
+import CardInfo from '@components/apply/CardInfo'
 
 import { ApplyValues } from '@models/apply'
 
@@ -25,7 +25,7 @@ function Apply({ step, onSubmit }: { step: number; onSubmit: () => void }) {
     <div>
       {step === 0 ? <Terms onNext={handleTermsChange} /> : null}
       {step === 1 ? <BasicInfo onNext={handleBasicInfoChange} /> : null}
-      {/*{step === 2 ? <CardInfo onNext={handleCardInfoChange} /> : null}*/}
+      {step === 2 ? <CardInfo onNext={handleCardInfoChange} /> : null}
     </div>
   )
 }
