@@ -20,7 +20,6 @@ function Navbar() {
   }, [])
 
   const renderButton = useCallback(() => {
-    console.log('$$$user: ', user)
     if (user != null) {
       return <Button onClick={handleLogout}>로그아웃</Button>
     }

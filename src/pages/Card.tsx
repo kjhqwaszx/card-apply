@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import { css } from '@emotion/react'
 import { motion } from 'framer-motion'
@@ -9,13 +9,32 @@ import { getCard } from '@remote/card'
 import Flex from '@shared/Flex'
 import Text from '@shared/Text'
 import FixedBottomButton from '@shared/FixedBottomButton'
+import { useCallback } from 'react'
+import { useUserStore } from '@/store/user'
+import { useAlertContext } from '@contexts/AlertContext'
 
 function CardPage() {
   const { id = '' } = useParams()
+  const user = useUserStore((state) => state.user)
+  const { open } = useAlertContext()
 
   const { data } = useQuery(['card', id], () => getCard(id), {
     enabled: id !== '',
   })
+
+  const navigate = useNavigate()
+
+  const moveToApply = useCallback(() => {
+    if (!user) {
+      open({
+        title: '로그인이 필요한 서비스 입니다.',
+        onButtonClick: () => {
+          navigate('/signIn')
+        },
+      })
+    }
+    navigate(`/apply/${id}`)
+  }, [user, id, open, navigate])
 
   if (data == null) {
     return null
@@ -68,7 +87,7 @@ function CardPage() {
         </Flex>
       ) : null}
 
-      <FixedBottomButton label="신청하기" onClick={() => {}} />
+      <FixedBottomButton label="신청하기" onClick={moveToApply} />
     </div>
   )
 }
