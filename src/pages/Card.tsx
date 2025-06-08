@@ -53,6 +53,7 @@ function CardPage() {
         {benefit.map((text, index) => {
           return (
             <motion.li
+              key={index}
               initial={{
                 opacity: 0,
                 translateX: -90,
@@ -106,15 +107,15 @@ function IconCheck() {
         d="M24 44C29.5228 44 34.5228 41.7614 38.1421 38.1421C41.7614 34.5228 44 29.5228 44 24C44 18.4772 41.7614 13.4772 38.1421 9.85786C34.5228 6.23858 29.5228 4 24 4C18.4772 4 13.4772 6.23858 9.85786 9.85786C6.23858 13.4772 4 18.4772 4 24C4 29.5228 6.23858 34.5228 9.85786 38.1421C13.4772 41.7614 18.4772 44 24 44Z"
         fill="#2F88FF"
         stroke="black"
-        stroke-linejoin="round"
-        stroke-width="4"
+        strokeLinejoin="round"
+        strokeWidth="4"
       />
       <path
         d="M16 24L22 30L34 18"
         stroke="white"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="4"
+        stroke-strokelinejoin="round"
+        strokeLinejoin="round"
+        strokeWidth="4"
       />
     </svg>
   )
