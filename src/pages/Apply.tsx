@@ -1,18 +1,57 @@
-import Apply from '@components/apply'
-
-import useApplyCardMutation from '@hooks/useApplyCardMutation'
 import { useState } from 'react'
-import usePollApplyStatus from '@hooks/usePollApplyStatus'
+import { useParams, useNavigate } from 'react-router-dom'
+
+import Apply from '@components/apply'
 import { updateApplyCard } from '@remote/apply'
-import { useUserStore } from '@/store/user'
 import { APPLY_STATUS } from '@models/apply'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useAlertContext } from '@contexts/AlertContext'
+import { useUserStore } from '@/store/user'
+import useAppliedCard from '@/hooks/useAppliedCard'
+import usePollApplyStatus from '@hooks/usePollApplyStatus'
+import useApplyCardMutation from '@hooks/useApplyCardMutation'
+
+function FullPageLoader(props: { message: string }) {
+  return null
+}
 
 function ApplyPage() {
-  const [readyToPoll, setReadyToPoll] = useState(false)
   const navigate = useNavigate()
+  const { open } = useAlertContext()
+
+  const [readyToPoll, setReadyToPoll] = useState(false)
+
   const user = useUserStore((state) => state.user)
   const { id } = useParams() as { id: string }
+
+  // 카드 신청 내역 조회
+  const { data } = useAppliedCard({
+    userId: user?.uid as string,
+    cardId: id,
+    options: {
+      onSuccess: (applied) => {
+        if (applied == null) {
+          // 신청 내역이 없는 경우
+          return
+        }
+
+        if (applied.status === APPLY_STATUS.COMPLETE) {
+          // 발급이 완료된 경우
+          open({
+            title: '이미 발급이 완료된 카드입니다',
+            onButtonClick: () => {
+              window.history.back()
+            },
+          })
+
+          return
+        }
+        // 진행중 or 반려 케이스
+        setReadyToPoll(true)
+      },
+      onError: () => {},
+      suspense: true,
+    },
+  })
 
   // 카드 신청 현황 Polling
   usePollApplyStatus({
@@ -52,13 +91,14 @@ function ApplyPage() {
       window.history.back()
     },
   })
-  // if (data != null && data.status === APPLY_STATUS.COMPLETE) {
-  //   return null
-  // }
+
+  if (data != null && data.status === APPLY_STATUS.COMPLETE) {
+    // 완료 케이스의 경우, Modal 을 띄우기 때문에 부모는 빈 화면 노출.
+    return null
+  }
 
   if (readyToPoll || isLoading) {
-    return <div>Loading ...</div>
-    // return <FullPageLoader message="카드를 신청중입니다" />
+    return <FullPageLoader message="카드를 신청중입니다" />
   }
 
   return <Apply onSubmit={mutate} />

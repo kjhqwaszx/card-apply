@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import HomePage from '@pages/Home'
 import TestPage from '@pages/Test'
@@ -21,18 +21,22 @@ function App() {
         <Route path="/signIn" element={<SignIn />} />
         <Route path="/signuP" element={<SignUp />} />
         <Route path="/card/:id" Component={CardPage} />
-        {/*카드신청은 로그인한 사용자만 접근 가능*/}
+
         <Route
           path="/apply/:id"
           element={
+            // 로그인한 사용자만 접근 가능
             <PrivateRoute>
-              <ApplyPage />
+              <Suspense fallback={<></>}>
+                <ApplyPage />
+              </Suspense>
             </PrivateRoute>
           }
         />
         <Route
           path="/apply/done"
           element={
+            // 로그인한 사용자만 접근 가능
             <PrivateRoute>
               <ApplyDone />
             </PrivateRoute>

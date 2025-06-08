@@ -38,6 +38,7 @@ export async function updateApplyCard({
   updateDoc(applied.ref, applyValues)
 }
 
+// 카드 신청 내역조회
 export async function getAppliedCard({
   userId,
   cardId,
