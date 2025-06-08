@@ -9,10 +9,7 @@ import { useUserStore } from '@/store/user'
 import useAppliedCard from '@/hooks/useAppliedCard'
 import usePollApplyStatus from '@hooks/usePollApplyStatus'
 import useApplyCardMutation from '@hooks/useApplyCardMutation'
-
-function FullPageLoader(props: { message: string }) {
-  return null
-}
+import FullPageLoader from '@shared/FullPageLoader'
 
 function ApplyPage() {
   const navigate = useNavigate()
