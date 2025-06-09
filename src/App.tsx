@@ -10,6 +10,7 @@ import SignUp from '@pages/SignUp'
 import Navbar from '@shared/Navbar'
 import PrivateRoute from '@components/auth/PrivateRoute'
 import ApplyDone from '@pages/ApplyDone'
+import MyPage from '@pages/MyPage'
 
 function App() {
   return (
@@ -39,6 +40,15 @@ function App() {
             // 로그인한 사용자만 접근 가능
             <PrivateRoute>
               <ApplyDone />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/my"
+          element={
+            // 로그인한 사용자만 접근 가능
+            <PrivateRoute>
+              <MyPage />
             </PrivateRoute>
           }
         />
