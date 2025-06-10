@@ -42,6 +42,7 @@ function CardList() {
     return null
   }
 
+  // @ts-ignore
   const cards = flatten(data?.pages.map(({ items }) => items))
 
   return (

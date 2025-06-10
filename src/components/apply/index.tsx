@@ -6,6 +6,9 @@ import { APPLY_STATUS, ApplyValues } from '@models/apply'
 import { useEffect, useState } from 'react'
 import { useUserStore } from '@/store/user'
 import { useParams } from 'react-router-dom'
+import ProgressBar from '../shared/ProgressBar'
+
+const LAST_STEP = 3
 
 function Apply({ onSubmit }: { onSubmit: (applyValues: ApplyValues) => void }) {
   const user = useUserStore((state) => state?.user)
@@ -73,6 +76,7 @@ function Apply({ onSubmit }: { onSubmit: (applyValues: ApplyValues) => void }) {
 
   return (
     <div>
+      <ProgressBar progress={(applyValues.step as number) / LAST_STEP} />
       {applyValues.step === 0 ? <Terms onNext={handleTermsChange} /> : null}
       {applyValues.step === 1 ? (
         <BasicInfo onNext={handleBasicInfoChange} />
