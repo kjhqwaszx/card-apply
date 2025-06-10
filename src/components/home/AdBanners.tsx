@@ -14,6 +14,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 function AdBanners() {
   const { data, isLoading } = useQuery(['adBanners'], () => getAdBanners())
 
+  // 스켈레톤
   if (data == null || isLoading) {
     return (
       <Container>
