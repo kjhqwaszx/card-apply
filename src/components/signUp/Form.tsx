@@ -26,12 +26,12 @@ function Form({ onSubmit }: { onSubmit: (formValues: FormValues) => void }) {
     }))
   }, [])
 
-  const handleReWrite = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    setFormValues((prevFormValues) => ({
-      ...prevFormValues,
-      [e.target.name]: e.target.value,
-    }))
-  }, [])
+  // const handleReWrite = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  //   setFormValues((prevFormValues) => ({
+  //     ...prevFormValues,
+  //     [e.target.name]: e.target.value,
+  //   }))
+  // }, [])
 
   // 특정 폼에 포커스 이동이 되었었는지 -> 되었으면 validate 확인 후 hasError 처리
   const handleBlur = useCallback((e: ChangeEvent<HTMLInputElement>) => {
