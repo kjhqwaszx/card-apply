@@ -12,6 +12,8 @@ import FixedBottomButton from '@shared/FixedBottomButton'
 import { useCallback } from 'react'
 import { useUserStore } from '@/store/user'
 import { useAlertContext } from '@contexts/AlertContext'
+import Spacing from '@shared/Spacing'
+import Review from '@components/card/Review'
 
 function CardPage() {
   const { id = '' } = useParams()
@@ -88,6 +90,10 @@ function CardPage() {
           <Text typography="t7">{removeHtmlTags(promotion.terms)}</Text>
         </Flex>
       ) : null}
+
+      <Spacing size={1000} />
+      <Review />
+      <Spacing size={100} />
 
       <FixedBottomButton
         label="1분만에 신청하고 혜택받기"
